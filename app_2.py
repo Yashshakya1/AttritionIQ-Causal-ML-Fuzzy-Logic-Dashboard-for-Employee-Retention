@@ -26,9 +26,41 @@ st.markdown("""
     font-family: 'DM Sans', sans-serif;
 }
 
-/* Hide default streamlit elements */
-#MainMenu, footer, header { visibility: hidden; }
+/* Hide ONLY specific streamlit elements, keep header visible for toggle */
+#MainMenu, footer { visibility: hidden; }
+header { visibility: visible !important; background: transparent !important; }
 .block-container { padding-top: 1.5rem; padding-bottom: 2rem; max-width: 1400px; }
+
+/* Always show sidebar toggle button */
+[data-testid="collapsedControl"],
+[data-testid="collapsedControl"] button,
+header [data-testid="baseButton-headerNoPadding"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #38bdf8 !important;
+}
+
+/* Custom sidebar toggle button styling */
+[data-testid="collapsedControl"] {
+    position: fixed !important;
+    top: 0.75rem !important;
+    left: 0.75rem !important;
+    z-index: 999999 !important;
+    background: rgba(13, 18, 40, 0.95) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 0.3rem !important;
+    backdrop-filter: blur(12px) !important;
+}
+[data-testid="collapsedControl"]:hover {
+    border-color: rgba(56, 189, 248, 0.7) !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.2) !important;
+}
+[data-testid="collapsedControl"] svg {
+    fill: #38bdf8 !important;
+    stroke: #38bdf8 !important;
+}
 
 /* Sidebar */
 [data-testid="stSidebar"] {
@@ -220,6 +252,30 @@ h1, h2, h3 { font-family: 'Syne', sans-serif !important; }
 """, unsafe_allow_html=True)
 
 # ── Sidebar Inputs ─────────────────────────────────────────────────────────────
+
+# ── JS: Force sidebar toggle always visible ───────────────────────────────────
+st.components.v1.html("""
+<script>
+function fixSidebarToggle() {
+    const selectors = [
+        '[data-testid="collapsedControl"]',
+        'button[data-testid="baseButton-headerNoPadding"]',
+        'header button',
+    ];
+    selectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+            el.style.setProperty('display', 'flex', 'important');
+            el.style.setProperty('visibility', 'visible', 'important');
+            el.style.setProperty('opacity', '1', 'important');
+        });
+    });
+}
+fixSidebarToggle();
+setInterval(fixSidebarToggle, 500);
+new MutationObserver(fixSidebarToggle).observe(document.body, {childList:true, subtree:true});
+</script>
+""", height=0)
+
 with st.sidebar:
     st.markdown('<div class="sidebar-title">⚙ Employee Parameters</div>', unsafe_allow_html=True)
 
