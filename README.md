@@ -4,17 +4,29 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.43+-red?style=flat-square&logo=streamlit)](https://streamlit.io)
 [![DoWhy](https://img.shields.io/badge/DoWhy-0.14-green?style=flat-square)](https://py-why.github.io/dowhy)
 [![EconML](https://img.shields.io/badge/EconML-0.16-orange?style=flat-square)](https://econml.azurewebsites.net)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-purple?style=flat-square&logo=render)](https://attritioniq-causal-ml-fuzzy-logic.onrender.com)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
 > An end-to-end AI-powered HR analytics platform combining **Causal Machine Learning** and **Fuzzy Logic** to predict and explain employee attrition risk — with a beautiful interactive dashboard.
 
 ---
 
-## 📸 Demo
+## 🌐 Live Demo
 
-![Dashboard Preview](assets/dashboard_preview.png)
+**👉 [attritioniq-causal-ml-fuzzy-logic.onrender.com](https://attritioniq-causal-ml-fuzzy-logic.onrender.com)**
 
-**Live Demo:** [attritioniq.onrender.com](https://attritioniq.onrender.com)
+---
+
+## 📸 Screenshots
+
+### Main Dashboard
+![Employee Attrition Risk Dashboard](assets/dashboard_preview.png)
+
+### Risk Score, Gauge & Factor Breakdown
+![Risk Score and Gauge](assets/dashboard_preview2.png)
+
+### Causal Effect Results — DoWhy Refutation Tests
+![Causal ML Results](assets/causal_result.png)
 
 ---
 
@@ -34,14 +46,16 @@
 ```
 attritioniq/
 │
-├── attrition_dashboard.py   # Streamlit frontend dashboard
-├── app.py                   # Flask REST API
-├── causal_ml_improved.ipynb # Full analysis notebook
-├── requirements.txt         # Python dependencies
+├── attrition_dashboard.py    # Streamlit frontend dashboard
+├── app.py                    # Flask REST API
+├── causal_ml_improved.ipynb  # Full analysis notebook
+├── requirements.txt          # Python dependencies
 ├── README.md
 │
 └── assets/
-    └── dashboard_preview.png
+    ├── dashboard_preview.png
+    ├── dashboard_preview2.png
+    └── causal_result.png
 ```
 
 ---
@@ -119,13 +133,13 @@ Content-Type: application/json
 ### Part 1 — Causal ML (Rideshare Pricing)
 
 ```
-Treatment:  surge_multiplier
-Outcome:    price
+Treatment:   surge_multiplier
+Outcome:     price
 Confounders: distance, temperature, hour, cab_type, service_name
 
-DoWhy Result:    Causal Effect = 21.73
-EconML (LinearDML ATE): 22.07
-Refutation Tests: ✅ Passed (Placebo ≈ 0.002)
+DoWhy Result (Linear Regression):  Causal Effect = 21.73
+EconML LinearDML ATE:              22.07
+Refutation Tests:                  ✅ Passed (Placebo ≈ 0.002)
 ```
 
 **Pipeline:**
@@ -138,6 +152,7 @@ Refutation Tests: ✅ Passed (Placebo ≈ 0.002)
 ### Part 2 — Fuzzy Logic (Employee Attrition)
 
 **Input Variables:**
+
 | Variable | Range | Description |
 |---|---|---|
 | `overtime` | 0–1 | Overtime hours indicator |
@@ -148,13 +163,13 @@ Refutation Tests: ✅ Passed (Placebo ≈ 0.002)
 
 **Rules (7 total):**
 ```
-IF overtime=HIGH AND worklife=POOR  → risk=HIGH
-IF satisfaction=LOW                 → risk=HIGH
-IF worklife=GOOD AND satisfaction=HIGH → risk=LOW
-IF salary=LOW AND satisfaction=MEDIUM  → risk=HIGH
-IF salary=HIGH AND satisfaction=HIGH   → risk=LOW
-IF years=NEW AND worklife=POOR      → risk=HIGH
-IF years=VETERAN AND worklife=MEDIUM → risk=LOW
+IF overtime=HIGH AND worklife=POOR      → risk=HIGH
+IF satisfaction=LOW                     → risk=HIGH
+IF worklife=GOOD AND satisfaction=HIGH  → risk=LOW
+IF salary=LOW AND satisfaction=MEDIUM   → risk=HIGH
+IF salary=HIGH AND satisfaction=HIGH    → risk=LOW
+IF years=NEW AND worklife=POOR          → risk=HIGH
+IF years=VETERAN AND worklife=MEDIUM    → risk=LOW
 ```
 
 ---
@@ -230,7 +245,7 @@ All changes are documented inline with `# [CHANGE]` comments explaining **what**
 
 ## 🤝 Contributing
 
-Pull requests welcome! For major changes, open an issue first.
+Pull requests welcome! For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
@@ -243,8 +258,8 @@ MIT License — see [LICENSE](LICENSE) for details.
 ## 👤 Author
 
 **Yash Shakya**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- 🔗 LinkedIn: [linkedin.com/in/yash-shakya-71bab72b5](https://www.linkedin.com/in/yash-shakya-71bab72b5)
+- 🌐 Live Project: [attritioniq-causal-ml-fuzzy-logic.onrender.com](https://attritioniq-causal-ml-fuzzy-logic.onrender.com)
 
 ---
 
