@@ -325,6 +325,7 @@ MIT License — free to use and modify.
 **Yash Shakya**
 - 🔗 LinkedIn: [linkedin.com/in/yash-shakya-71bab72b5](https://www.linkedin.com/in/yash-shakya-71bab72b5)
 - 🌐 Live Project: [attritioniq-causal-ml-fuzzy-logic.onrender.com](https://attritioniq-causal-ml-fuzzy-logic.onrender.com)
+- 📊 DATASET LINK :- https://drive.google.com/file/d/18l_wblO_CKuDLirJvtQk-Gu5aUE1MmnX/view?usp=drive_link
 
 ---
 
