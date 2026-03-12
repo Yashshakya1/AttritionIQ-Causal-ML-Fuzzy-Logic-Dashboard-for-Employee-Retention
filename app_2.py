@@ -185,7 +185,6 @@ h1, h2, h3 { font-family: 'Syne', sans-serif !important; }
     padding: 1.5rem;
     margin-top: 1rem;
 }
-
 /* Causal code block */
 .causal-block {
     background: #0a0f1e;
